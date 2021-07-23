@@ -4,9 +4,8 @@ import {
 	validateSpaceshipPositions,
 	validateSpaceshipMoves,
 	validateOutput,
+	ERROR_CODE,
 } from '../validations.js'
-
-const ERROR_CODE = 1;
 
 describe('validateUpperRightPosition', () => {
 	const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => { });

@@ -1,12 +1,17 @@
 import process from 'process'
 
+const errorHandler = (message) => {
+	console.log(message);
+	process.exit(ERROR_CODE);
+}
+
+export const ERROR_CODE = 1;
+
 export const validateUpperRightPosition = (position) => {
 	if(position.length !== 2) {
-		console.log('Invalid upper-right position');
-		process.exit(1);
+		errorHandler('Invalid upper-right position');
 	} else if(position[0] !== position[1]) {
-		console.log('Terrain must be a rectangle');
-		process.exit(1);
+		errorHandler('Terrain must be a rectangle');
 	}
 }
 
@@ -14,14 +19,11 @@ export const validateSpaceshipPositions = (position) => {
 	const validPositions = ['N', 'S', 'W', 'E'];
 
 	if(position.length !== 3) {
-		console.log('Invalid spaceship position array length');
-		process.exit(1);
+		errorHandler('Invalid spaceship position array length');
 	} else if(!(validPositions.includes(position[2]))) {
-		console.log('Invalid spaceship direction');
-		process.exit(1);
+		errorHandler('Invalid spaceship direction');
 	} else if(position[0] < 0 || position[1] < 0) {
-		console.log('Position cannot be lower than 0,0');
-		process.exit(1);	
+		errorHandler('Position cannot be lower than 0,0');
 	}
 }
 
@@ -29,8 +31,7 @@ export const validateSpaceshipMoves = (moves) => {
 	const validMoves = ['L', 'R', 'M'];
 	moves.forEach(move => {
 		if(!(validMoves.includes(move))) {
-			console.log('Invalid spaceship moves');
-			process.exit(1);
+			errorHandler('Invalid spaceship moves');
 		}
 	})
 }
@@ -45,7 +46,6 @@ export const validateInput = (fileContent) => {
 
 export const validateOutput = (initialPos, position) => {
 	if(position[0] > initialPos[0] || position[1] > initialPos[1]) {
-		console.log('Spaceship made an invalid path');
-		process.exit(1);
+		errorHandler('Spaceship made an invalid path');
 	}
 }
