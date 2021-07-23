@@ -1,4 +1,5 @@
-import fs from 'fs'
+import fs from 'fs';
+import { validateInput } from './validations.js';
 
 const parseInt = (string) => {
 	return Number.parseInt(string, 10)
@@ -14,6 +15,8 @@ const parseSpaceshipPositionArray = (position) => {
 
 export const readData = () => {
 	const fileContent = fs.readFileSync('./input.txt', 'utf-8').split('\n');
+
+	validateInput(fileContent);
 
 	return {
 		initialPos: fileContent[0].split(' ').map(entry => Number.parseInt(entry, 10)),
