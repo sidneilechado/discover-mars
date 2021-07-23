@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+		"dev": "node index.js",
     "test:unit": "node --experimental-vm-modules node_modules/.bin/jest --silent",
     "test:coverage": "node --experimental-vm-modules node_modules/.bin/jest --coverage"
   },
