@@ -1,6 +1,13 @@
 import { moveSpaceship } from './moves.js'
 import { readData } from './input.js'
 
-const data = readData();
-console.log(moveSpaceship(data.firstSpaceshipPosition, data.firstSpaceshipMoves).join(' '))
-console.log(moveSpaceship(data.secondSpaceshipPosition, data.secondSpaceshipMoves).join(' '))
+const { 
+  firstSpaceshipPosition, 
+  firstSpaceshipMoves, 
+  initialPos, 
+  secondSpaceshipMoves, 
+  secondSpaceshipPosition
+} = readData();
+
+console.log(moveSpaceship(initialPos, firstSpaceshipPosition, firstSpaceshipMoves).join(' '))
+console.log(moveSpaceship(initialPos, secondSpaceshipPosition, secondSpaceshipMoves).join(' '))

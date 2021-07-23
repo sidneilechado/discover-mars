@@ -1,3 +1,5 @@
+import { validateOutput } from "./validations.js";
+
 const moves = {
 	N: [0, 1],
 	S: [0, -1],
@@ -19,7 +21,7 @@ const rotationRight = {
 	W: 'N',
 }
 
-export const moveSpaceship = (position, spaceshipMoves) => {
+export const moveSpaceship = (initialPos, position, spaceshipMoves) => {
 	for(let i = 0; i <= spaceshipMoves.length; i++){
 		switch(spaceshipMoves[i]){
 			case 'M':
@@ -38,5 +40,6 @@ export const moveSpaceship = (position, spaceshipMoves) => {
 		}
 	}
 
+	validateOutput(initialPos, position);
 	return position;
 }

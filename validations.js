@@ -42,3 +42,10 @@ export const validateInput = (fileContent) => {
 	validateSpaceshipMoves(fileContent[2].split(''))
 	validateSpaceshipMoves(fileContent[4].split(''))
 }
+
+export const validateOutput = (initialPos, position) => {
+	if(position[0] > initialPos[0] || position[1] > initialPos[1]) {
+		console.log('Spaceship made an invalid path');
+		process.exit(1);
+	}
+}
