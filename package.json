@@ -1,21 +1,25 @@
 {
-  "name": "discover-mars",
+  "name": "exploring-mars",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:unit": "node --experimental-vm-modules node_modules/.bin/jest --silent",
+    "test:coverage": "node --experimental-vm-modules node_modules/.bin/jest --coverage"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sidneilechado/discover-mars.git"
+    "url": "git+https://github.com/sidneilechado/exploring-mars.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sidneilechado/discover-mars/issues"
+    "url": "https://github.com/sidneilechado/exploring-mars/issues"
   },
-  "homepage": "https://github.com/sidneilechado/discover-mars#readme"
+  "homepage": "https://github.com/sidneilechado/exploring-mars#readme",
+  "devDependencies": {
+    "jest": "27.0.6"
+  }
 }

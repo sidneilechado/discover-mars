@@ -1,6 +1,6 @@
 import process from 'process'
 
-const validateUpperRightPosition = (position) => {
+export const validateUpperRightPosition = (position) => {
 	if(position.length !== 2) {
 		console.log('Invalid upper-right position');
 		process.exit(1);
@@ -10,7 +10,7 @@ const validateUpperRightPosition = (position) => {
 	}
 }
 
-const validateSpaceshipPositions = (position) => {
+export const validateSpaceshipPositions = (position) => {
 	const validPositions = ['N', 'S', 'W', 'E'];
 
 	if(position.length !== 3) {
@@ -25,7 +25,7 @@ const validateSpaceshipPositions = (position) => {
 	}
 }
 
-const validateSpaceshipMoves = (moves) => {
+export const validateSpaceshipMoves = (moves) => {
 	const validMoves = ['L', 'R', 'M'];
 	moves.forEach(move => {
 		if(!(validMoves.includes(move))) {

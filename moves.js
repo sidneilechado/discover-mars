@@ -21,7 +21,7 @@ const rotationRight = {
 	W: 'N',
 }
 
-export const moveSpaceship = (initialPos, position, spaceshipMoves) => {
+export const moveSpaceship = (upperRightPosition, position, spaceshipMoves) => {
 	for(let i = 0; i <= spaceshipMoves.length; i++){
 		switch(spaceshipMoves[i]){
 			case 'M':
@@ -40,6 +40,6 @@ export const moveSpaceship = (initialPos, position, spaceshipMoves) => {
 		}
 	}
 
-	validateOutput(initialPos, position);
+	validateOutput(upperRightPosition, position);
 	return position;
 }
