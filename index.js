@@ -1,13 +1,13 @@
 import { moveSpaceship } from './moves.js'
-import { readData } from './input.js'
+import { parsedData } from './input.js'
 
 const { 
   firstSpaceshipPosition, 
   firstSpaceshipMoves, 
-  initialPos, 
+  upperRightPosition, 
   secondSpaceshipMoves, 
   secondSpaceshipPosition
-} = readData();
+} = parsedData();
 
-console.log(moveSpaceship(initialPos, firstSpaceshipPosition, firstSpaceshipMoves).join(' '))
-console.log(moveSpaceship(initialPos, secondSpaceshipPosition, secondSpaceshipMoves).join(' '))
+console.log(moveSpaceship(upperRightPosition, firstSpaceshipPosition, firstSpaceshipMoves).join(' '))
+console.log(moveSpaceship(upperRightPosition, secondSpaceshipPosition, secondSpaceshipMoves).join(' '))

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { validateInput } from './validations.js';
+import validations from './validations.js';
 
 const parseInt = (string) => {
 	return Number.parseInt(string, 10)
@@ -13,16 +13,22 @@ const parseSpaceshipPositionArray = (position) => {
 }
 
 
-export const readData = () => {
+export const parsedData = () => {
 	const fileContent = fs.readFileSync('./input.txt', 'utf-8').split('\n');
 
-	validateInput(fileContent);
+	const {
+		firstSpaceshipMoves,
+		firstSpaceshipPosition,
+		secondSpaceshipMoves,
+		secondSpaceshipPosition,
+		upperRightPosition,
+	} = validations.validateInput(fileContent);
 
 	return {
-		initialPos: fileContent[0].split(' ').map(entry => Number.parseInt(entry, 10)),
-		firstSpaceshipPosition: parseSpaceshipPositionArray(fileContent[1].split(' ')),
-		secondSpaceshipPosition: parseSpaceshipPositionArray(fileContent[3].split(' ')),
-		firstSpaceshipMoves: fileContent[2].split(''),
-		secondSpaceshipMoves: fileContent[4].split(''),
+		upperRightPosition: upperRightPosition.map(entry => parseInt(entry)),
+		firstSpaceshipPosition: parseSpaceshipPositionArray(firstSpaceshipPosition),
+		secondSpaceshipPosition: parseSpaceshipPositionArray(secondSpaceshipPosition),
+		firstSpaceshipMoves,
+		secondSpaceshipMoves,
 	}
 }
