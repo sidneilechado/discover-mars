@@ -1,5 +1,5 @@
 import { it, describe, expect } from '@jest/globals'
-import { moveSpaceship } from '../moves.js'
+import { moveSpaceship } from '../src/moves.js'
 
 describe('moveSpaceship', () => {
 	it('Should correctly move spaceship North', () => {

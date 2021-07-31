@@ -1,5 +1,5 @@
-import { moveSpaceship } from './moves.js'
-import { parsedData } from './input.js'
+import { moveSpaceship } from './src/moves.js'
+import { parsedData } from './src/input.js'
 
 const { 
   firstSpaceshipPosition, 

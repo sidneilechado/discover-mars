@@ -1,14 +1,10 @@
-import { jest, it, describe, expect } from '@jest/globals'
-import validations from '../validations.js'
-import { ERROR_CODE} from '../constants.js'
+import { it, describe, expect } from '@jest/globals'
+import validations from '../src/validations.js'
 
 const {
 	validateUpperRightPosition,
 	validateSpaceshipEntry,
-	validateOutput,
 } = validations;
-
-const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => { });
 
 describe('validateUpperRightPosition', () => {
 	it('Should exit when upperRight position arrays length is not equal 2', () => {

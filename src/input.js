@@ -14,7 +14,7 @@ const parseSpaceshipPositionArray = (position) => {
 
 
 export const parsedData = () => {
-	const fileContent = fs.readFileSync('../input.txt', 'utf-8').split('\n');
+	const fileContent = fs.readFileSync('./input.txt', 'utf-8').split('\n');
 
 	const {
 		firstSpaceshipMoves,
