@@ -1,70 +1,59 @@
 import { jest, it, describe, expect } from '@jest/globals'
-import {
+import validations from '../validations.js'
+import { ERROR_CODE} from '../constants.js'
+
+const {
 	validateUpperRightPosition,
-	validateSpaceshipPositions,
-	validateSpaceshipMoves,
+	validateSpaceshipEntry,
 	validateOutput,
-	ERROR_CODE,
-} from '../validations.js'
+} = validations;
+
+const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => { });
 
 describe('validateUpperRightPosition', () => {
-	const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => { });
-
 	it('Should exit when upperRight position arrays length is not equal 2', () => {
-		validateUpperRightPosition([5, 5, 'itWillFail'])
-		expect(mockExit).toHaveBeenCalledWith(ERROR_CODE);
+		const errors = validateUpperRightPosition([5, 5, 'itWillFail']);
+		expect(errors).toStrictEqual(['Invalid upper-right position'])
 	})
 
 	it('Should exit when terrain is not a rectangle', () => {
-		validateUpperRightPosition([1, 2])
-		expect(mockExit).toHaveBeenCalledWith(ERROR_CODE);
+		const errors = validateUpperRightPosition([1, 2])
+		expect(errors).toStrictEqual(['Terrain must be a rectangle'])
 	})
 })
 
-describe('validateSpaceshipPositions', () => {
-	const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => { });
+describe('validateSpaceshipEntry', () => {
+	const spaceship = 'First Spaceship';
 
-	it('Should exit when spaceship position arrays length is not equal 3', () => {
-		validateSpaceshipPositions([1, 5, 'N', 'itWillFail'])
-		expect(mockExit).toHaveBeenCalledWith(ERROR_CODE);
+	it('Should return error message when spaceship position arrays length is not equal 3', () => {
+		const position = [1, 5, 'N', 'itWillFail'];
+		const moves = ['M', 'L', 'R']
+		const errors = validateSpaceshipEntry(position, moves, spaceship)
+
+		expect(errors).toStrictEqual([`${spaceship} - Invalid spaceship position array length`])
 	})
 
-	it('Should exit when theres an illegal direction on the array', () => {
-		validateSpaceshipPositions([1, 2, 'X'])
-		expect(mockExit).toHaveBeenCalledWith(ERROR_CODE);
+	it('Should return error message when theres an illegal direction on the array', () => {
+		const position = [1, 5, 'X'];
+		const moves = ['M', 'L', 'R']
+		const errors = validateSpaceshipEntry(position, moves, spaceship)
+
+		expect(errors).toStrictEqual([`${spaceship} - Invalid spaceship direction`])
 	})
 
-	it('Should exit if initial position is lower than 0,0', () => {
-		validateSpaceshipPositions([1, -1, 'N'])
-		expect(mockExit).toHaveBeenCalledWith(ERROR_CODE);
-	})
-})
+	it('Should return error message if initial position is lower than 0,0', () => {
+		const position = [1, -3, 'N'];
+		const moves = ['M', 'L', 'R']
+		const errors = validateSpaceshipEntry(position, moves, spaceship)
 
-describe('validateSpaceshipMoves', () => {
-	const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => { });
-
-	it('Should exit when theres an illegal spaceship move', () => {
-		validateSpaceshipMoves(['LLLX'])
-		expect(mockExit).toHaveBeenCalledWith(ERROR_CODE);
-	})
-})
-
-describe('validateOutput', () => {
-	const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => { });
-
-	it('Should exit when position[0] is higher than upper right', () => {
-		const upperRightPosition = [5, 5]
-		const position = [6, 4]
-
-		validateOutput(upperRightPosition, position)
-		expect(mockExit).toHaveBeenCalledWith(ERROR_CODE);
+		expect(errors).toStrictEqual([`${spaceship} - Position cannot be lower than 0,0`])
 	})
 
-	it('Should exit when position[1] is higher than upper right', () => {
-		const upperRightPosition = [5, 5]
-		const position = [4, 6]
-		
-		validateOutput(upperRightPosition, position)
-		expect(mockExit).toHaveBeenCalledWith(ERROR_CODE);
+	it('Should return error message when theres an illegal spaceship move', () => {
+		const position = [1, 3, 'N'];
+		const moves = ['M', 'L', 'R', 'X']
+		const errors = validateSpaceshipEntry(position, moves, spaceship)
+
+		expect(errors).toStrictEqual([`${spaceship} - Invalid spaceship moves`])
 	})
 })
